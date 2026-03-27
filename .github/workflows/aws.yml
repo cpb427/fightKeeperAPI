@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: chris/fightkeep           # set this to your Amazon ECR repository name
   ECS_SERVICE: fightkeep-web-api-service-v63b4dt0   # set this to your Amazon ECS service name
   ECS_CLUSTER: talkative-koala-r5m02r         # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: https://github.com/cpb427/fightKeeperAPI/blob/main/.github/workflows/taskDefinition.json # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: https://raw.githubusercontent.com/cpb427/fightKeeperAPI/refs/heads/main/.github/workflows/taskDefinition.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: base_container           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
