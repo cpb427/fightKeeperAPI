@@ -10,7 +10,8 @@ public class FightResultController {
     @GetMapping
     public ResponseEntity<String> getAllFightResults() {
         // Logic to retrieve all fight results
-        return ResponseEntity.ok("All fight results");
+        //something simple just for testing
+         return ResponseEntity.ok("All fight results");
     }
 
     @GetMapping("/{id}")

@@ -1,1 +1,34 @@
-package com.fightkeeper.service;\n\nimport com.amazonaws.services.dynamodbv2.AmazonDynamoDB;\nimport com.amazonaws.services.dynamodbv2.document.DynamoDB;\nimport com.amazonaws.services.dynamodbv2.document.Table;\nimport com.amazonaws.services.dynamodbv2.document.Item;\nimport com.amazonaws.services.dynamodbv2.model.PutItemRequest;\nimport com.amazonaws.services.dynamodbv2.model.PutItemResult;\nimport com.amazonaws.services.dynamodbv2.model.AttributeValue;\nimport com.amazonaws.services.dynamodbv2.model.DynamoDBException;\n\npublic class FightResultService {\n\n    private final DynamoDB dynamoDB;\n    private final String tableName = "FightResults";\n\n    public FightResultService(AmazonDynamoDB client) {\n        this.dynamoDB = new DynamoDB(client);\n    }\n\n    public void saveFightResult(String fightId, String winner, String loser, int score) {\n        Table table = dynamoDB.getTable(tableName);\n        Item item = new Item()\n                .withPrimaryKey("FightID", fightId)\n                .withString("Winner", winner)\n                .withString("Loser", loser)\n                .withNumber("Score", score);\n\n        try {\n            table.putItem(item);\n        } catch (DynamoDBException e) {\n            System.err.println("Unable to add fight result: " + e.getMessage());\n        }\n    }\n    \n    // Additional methods for retrieving/updating results can be added here\n}
+package com.fightkeeper.service;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
+import com.amazonaws.services.dynamodbv2.model.PutItemResult;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.DynamoDBException;
+
+public class FightResultService {
+    
+    private final DynamoDB dynamoDB;
+    private final String tableName = "FightResults";
+    
+    public FightResultService(AmazonDynamoDB client) {
+        this.dynamoDB = new DynamoDB(client);
+        }
+        
+    public void saveFightResult(String fightId, String winner, String loser, int score) {
+        Table table = dynamoDB.getTable(tableName);
+        Item item = new Item()
+                        .withPrimaryKey("FightID", fightId)
+                        .withString("Winner", winner)
+                        .withString("Loser", loser)
+                        .withNumber("Score", score);
+        try {
+            table.putItem(item);
+            } catch (DynamoDBException e) {
+                System.err.println("Unable to add fight result: " + e.getMessage());
+            }
+    }
+                // Additional methods for retrieving/updating results can be added here\n
+}
