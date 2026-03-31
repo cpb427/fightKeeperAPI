@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +21,7 @@ public class FightResultService {
 
 
     public void saveFightResult(String player1, String player2, String howBadWasit, String reasonForLoss, String secondReasonForLoss, String comment) {
-        fightKeeperDB result = new fightKeeperDB(UUID.randomUUID().toString(), player1, player2, reasonForLoss, secondReasonForLoss, Date.from(Instant.now()), howBadWasit, comment);
+        fightKeeperDB result = new fightKeeperDB(UUID.randomUUID().toString(), player1, player2, reasonForLoss, secondReasonForLoss, Instant.now(), howBadWasit, comment);
         repo.save(result);
     }
 

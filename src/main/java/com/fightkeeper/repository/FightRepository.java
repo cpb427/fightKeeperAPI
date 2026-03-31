@@ -14,8 +14,10 @@ public class FightRepository {
 
     private final DynamoDbTable<fightKeeperDB> table;
 
+    private final String TABLE_NAME = "FightKeeperDB";
+
     public FightRepository(DynamoDbEnhancedClient enhancedClient) {
-        this.table = enhancedClient.table("fightKeeperDB", TableSchema.fromBean(fightKeeperDB.class));
+        this.table = enhancedClient.table(TABLE_NAME, TableSchema.fromBean(fightKeeperDB.class));
     }
 
     public void save(fightKeeperDB fightKeeperDB) {
