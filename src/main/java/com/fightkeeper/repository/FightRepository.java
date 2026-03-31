@@ -1,0 +1,31 @@
+package com.fightkeeper.repository;
+
+import com.fightkeeper.model.fightKeeperDB;
+import org.springframework.stereotype.Repository;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
+import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class FightRepository {
+
+    private final DynamoDbTable<fightKeeperDB> table;
+
+    public FightRepository(DynamoDbEnhancedClient enhancedClient) {
+        this.table = enhancedClient.table("fightKeeperDB", TableSchema.fromBean(fightKeeperDB.class));
+    }
+
+    public void save(fightKeeperDB fightKeeperDB) {
+        table.putItem(fightKeeperDB);
+    }
+
+    public List<fightKeeperDB> getAllResults() {
+        List<fightKeeperDB> resultList = new ArrayList<>();
+        table.scan().items().forEach(resultList::add);
+        return resultList;
+    }
+
+}

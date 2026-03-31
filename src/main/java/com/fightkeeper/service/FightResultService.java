@@ -1,34 +1,33 @@
 package com.fightkeeper.service;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
-import com.amazonaws.services.dynamodbv2.document.Table;
-import com.amazonaws.services.dynamodbv2.document.Item;
-import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
-import com.amazonaws.services.dynamodbv2.model.PutItemResult;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.amazonaws.services.dynamodbv2.model.DynamoDBException;
 
+import com.fightkeeper.model.fightKeeperDB;
+import com.fightkeeper.repository.FightRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@Service
 public class FightResultService {
-    
-    private final DynamoDB dynamoDB;
-    private final String tableName = "FightResults";
-    
-    public FightResultService(AmazonDynamoDB client) {
-        this.dynamoDB = new DynamoDB(client);
-        }
-        
-    public void saveFightResult(String fightId, String winner, String loser, int score) {
-        Table table = dynamoDB.getTable(tableName);
-        Item item = new Item()
-                        .withPrimaryKey("FightID", fightId)
-                        .withString("Winner", winner)
-                        .withString("Loser", loser)
-                        .withNumber("Score", score);
-        try {
-            table.putItem(item);
-            } catch (DynamoDBException e) {
-                System.err.println("Unable to add fight result: " + e.getMessage());
-            }
+
+    @Autowired
+    private final FightRepository repo;
+
+    public FightResultService(FightRepository repo) {
+        this.repo = repo;
     }
+
+
+    public void saveFightResult(String player1, String player2, String howBadWasit, String reasonForLoss, String secondReasonForLoss, String comment) {
+        fightKeeperDB result = new fightKeeperDB(UUID.randomUUID().toString(), player1, player2, reasonForLoss, secondReasonForLoss, Date.from(Instant.now()), howBadWasit, comment);
+        repo.save(result);
+    }
+
                 // Additional methods for retrieving/updating results can be added here\n
+        public List<fightKeeperDB> getAllResuts() {
+            return repo.getAllResults();
+        }
 }
