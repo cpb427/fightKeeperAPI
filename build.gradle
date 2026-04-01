@@ -37,3 +37,7 @@ test {
 tasks.withType(JavaExec) {
     jvmArgs = ['-Xms512m', '-Xmx512m']
 }
+
+tasks.named('bootJar') {
+    destinationDirectory = file("$projectDir/target")
+}
