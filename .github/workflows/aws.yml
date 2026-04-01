@@ -20,7 +20,7 @@ jobs:
           java-version: '21'
 
       - name: Build with Gradle
-        run: gradle bootRun
+        run: gradle bootJar
 
       - name: Debug Maven Build Output
         run: ls -R target
