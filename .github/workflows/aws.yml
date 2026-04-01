@@ -22,9 +22,6 @@ jobs:
       - name: Build with Gradle
         run: gradle bootJar
 
-      - name: Debug Maven Build Output
-        run: ls -R target
-
       - name: Check for Artifacts
         run: |
           if [ ! -f target/*.jar ]; then
