@@ -1,10 +1,9 @@
-
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:143555787117:task-definition/fightkeep-web-api:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:143555787117:task-definition/fightkeep-web-api:8",
   "containerDefinitions": [
     {
       "name": "base_container",
-      "image": "https://github.com/cpb427/fightKeeperAPI/",
+      "image": "143555787117.dkr.ecr.us-east-1.amazonaws.com/chris/fightkeep:1028e8c4f2df5e33554de4cc4ec2da40d9da5b93",
       "cpu": 0,
       "portMappings": [
         {
@@ -13,23 +12,25 @@
           "hostPort": 80,
           "protocol": "tcp",
           "appProtocol": "http"
+        },
+        {
+          "containerPort": 443,
+          "hostPort": 443,
+          "protocol": "tcp"
         }
       ],
       "essential": true,
       "environment": [],
-      "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
-      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "/ecs/fightkeep-web-api",
           "awslogs-create-group": "true",
-          "awslogs-region": "us-east-2",
+          "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
-        },
-        "secretOptions": []
+        }
       },
       "systemControls": []
     }
@@ -37,7 +38,7 @@
   "family": "fightkeep-web-api",
   "executionRoleArn": "arn:aws:iam::143555787117:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 1,
+  "revision": 8,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -48,7 +49,13 @@
       "name": "ecs.capability.execution-role-awslogs"
     },
     {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
     },
     {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
@@ -75,7 +82,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2026-03-27T15:30:50.931Z",
+  "registeredAt": "2026-04-02T19:53:06.178Z",
   "registeredBy": "arn:aws:iam::143555787117:root",
   "tags": []
 }
