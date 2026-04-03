@@ -24,7 +24,7 @@ public class DynamoDBConfig {
 
         System.out.println("scoobs");
         System.out.println(DBAccessKey);
-        
+
         AwsBasicCredentials credentials = AwsBasicCredentials.create(
                 DBAccessKey,
                 DBSecret
