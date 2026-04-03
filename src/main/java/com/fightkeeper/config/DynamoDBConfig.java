@@ -1,5 +1,6 @@
 package com.fightkeeper.config;
 
+import com.fightkeeper.util.SecretsUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,21 +14,14 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 @Configuration
 public class DynamoDBConfig {
 
-    @Value("${aws.dynamodb.accessKey}")
-    private String DBAccessKey;
-
-    @Value("${aws.dynamodb.secretKey}")
-    private String DBSecret;
 
     @Bean
     public DynamoDbClient dynamoDbClient() {
 
-        System.out.println("scoobs");
-        System.out.println(DBAccessKey);
 
         AwsBasicCredentials credentials = AwsBasicCredentials.create(
-                DBAccessKey,
-                DBSecret
+                SecretsUtil.getAccessKey(),
+                SecretsUtil.getAccessSecret()
         );
 
         return DynamoDbClient.builder()
