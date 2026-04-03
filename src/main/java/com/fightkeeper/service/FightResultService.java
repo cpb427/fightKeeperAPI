@@ -25,8 +25,11 @@ public class FightResultService {
         repo.save(result);
     }
 
-                // Additional methods for retrieving/updating results can be added here\n
-        public List<fightKeeperDB> getAllResuts() {
+    public void saveFightResult(fightKeeperDB fight) {
+        this.saveFightResult(fight.getFighter1(), fight.getFighter2(),fight.getHowBadWasIt(), fight.getReasonForLoss(),fight.getSecondReasonForLoss(), fight.getComment());
+    }
+    // Additional methods for retrieving/updating results can be added here\n
+    public List<fightKeeperDB> getAllResults() {
             return repo.getAllResults();
         }
 }
