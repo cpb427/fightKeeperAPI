@@ -18,7 +18,7 @@ public class DynamoDBConfig {
     @Bean
     public DynamoDbClient dynamoDbClient() {
 
-
+        System.out.println("Scoobs A");
         AwsBasicCredentials credentials = AwsBasicCredentials.create(
                 SecretsUtil.getAccessKey(),
                 SecretsUtil.getAccessSecret()

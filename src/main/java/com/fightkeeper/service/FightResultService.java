@@ -12,7 +12,6 @@ import java.util.UUID;
 @Service
 public class FightResultService {
 
-    @Autowired
     private final FightRepository repo;
 
     public FightResultService(FightRepository repo) {
