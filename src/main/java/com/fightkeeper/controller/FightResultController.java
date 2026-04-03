@@ -15,6 +15,8 @@ public class FightResultController {
     @Autowired
     FightResultService service;
 
+
+
     @GetMapping
     public ResponseEntity<List<fightKeeperDB>> getAllFightResults() {
         // Logic to retrieve all fight results

@@ -20,7 +20,7 @@ public class FightResultService {
 
 
     public void saveFightResult(String player1, String player2, String howBadWasit, String reasonForLoss, String secondReasonForLoss, String comment) {
-        fightKeeperDB result = new fightKeeperDB(UUID.randomUUID().toString(), player1, player2, reasonForLoss, secondReasonForLoss, Instant.now(), howBadWasit, comment);
+        fightKeeperDB result = new fightKeeperDB(UUID.randomUUID().toString(), player1, player2, reasonForLoss, secondReasonForLoss, "", howBadWasit, comment);
         repo.save(result);
     }
 

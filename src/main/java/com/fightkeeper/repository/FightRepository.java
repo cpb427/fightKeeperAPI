@@ -16,7 +16,7 @@ public class FightRepository {
 
     private final DynamoDbTable<fightKeeperDB> table;
 
-    private final String TABLE_NAME = "FightKeeperDB";
+    private final String TABLE_NAME = "fightKeeperDB";
 
     public FightRepository(DynamoDbEnhancedClient enhancedClient) {
         System.out.println("scoobs 1");

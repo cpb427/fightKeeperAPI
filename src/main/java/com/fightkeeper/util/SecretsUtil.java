@@ -41,6 +41,9 @@ public class SecretsUtil {
             getSecretValueResponse = client.getSecretValue(getSecretValueRequest);
         } catch (Exception e) {
             // For a list of exceptions thrown, see
+            System.out.println("scoobs C");
+            System.out.println(e.getLocalizedMessage());
+            e.printStackTrace();
             // https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
             throw e;
         }

@@ -27,8 +27,8 @@ public class fightKeeperDB {
 
     private String secondReasonForLoss;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
-    private Instant fightTime;
+//    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    private String fightTime;
 
     private String howBadWasIt;
 
