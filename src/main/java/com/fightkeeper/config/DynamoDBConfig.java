@@ -15,11 +15,11 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 @Configuration
 public class DynamoDBConfig {
 
-//    @Value("${aws.access-key}")
-//    private String accessKey;
-//
-//    @Value("${aws.secret-key}")
-//    private String secretKey;
+    @Value("${aws.access-key}")
+    private String accessKey;
+
+    @Value("${aws.secret-key}")
+    private String secretKey;
 
 //    @Bean
 //    public AwsCredentialsProvider awsCredentialsProvider() {
@@ -39,14 +39,17 @@ public class DynamoDBConfig {
 //                SecretsUtil.getAccessKey(),
 //                SecretsUtil.getAccessSecret()
 //        );
-//        AwsBasicCredentials credentials = AwsBasicCredentials.create(
-//                accessKey,
-//                secretKey
-//        );
+        AwsBasicCredentials credentials = AwsBasicCredentials.create(
+                accessKey,
+                secretKey
+        );
+
+        StaticCredentialsProvider credentialsProvider = StaticCredentialsProvider.create(credentials);
+
 
         return DynamoDbClient.builder()
                 .region(Region.US_EAST_1)
-                .credentialsProvider(DefaultCredentialsProvider.create())
+                .credentialsProvider(credentialsProvider)
                 .build();
     }
 
