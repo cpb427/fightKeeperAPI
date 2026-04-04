@@ -1,10 +1,7 @@
 package com.fightkeeper.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.time.Instant;
 
 import lombok.NoArgsConstructor;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
@@ -15,7 +12,7 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbParti
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamoDbBean
-public class fightKeeperDB {
+public class FightResult {
 
     private String fkdb1;
 
@@ -27,7 +24,6 @@ public class fightKeeperDB {
 
     private String secondReasonForLoss;
 
-//    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private String fightTime;
 
     private String howBadWasIt;

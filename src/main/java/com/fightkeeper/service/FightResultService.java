@@ -1,11 +1,9 @@
 package com.fightkeeper.service;
 
-import com.fightkeeper.model.fightKeeperDB;
+import com.fightkeeper.model.FightResult;
 import com.fightkeeper.repository.FightRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,16 +17,16 @@ public class FightResultService {
     }
 
 
-    public void saveFightResult(String player1, String player2, String howBadWasit, String reasonForLoss, String secondReasonForLoss, String comment) {
-        fightKeeperDB result = new fightKeeperDB(UUID.randomUUID().toString(), player1, player2, reasonForLoss, secondReasonForLoss, "", howBadWasit, comment);
+    public void saveFightResult(String player1, String player2, String howBadWasit, String reasonForLoss, String secondReasonForLoss, String fightTime, String comment) {
+        FightResult result = new FightResult(UUID.randomUUID().toString(), player1, player2, reasonForLoss, secondReasonForLoss, fightTime, howBadWasit, comment);
         repo.save(result);
     }
 
-    public void saveFightResult(fightKeeperDB fight) {
-        this.saveFightResult(fight.getFighter1(), fight.getFighter2(),fight.getHowBadWasIt(), fight.getReasonForLoss(),fight.getSecondReasonForLoss(), fight.getComment());
+    public void saveFightResult(FightResult fight) {
+        this.saveFightResult(fight.getFighter1(), fight.getFighter2(),fight.getHowBadWasIt(), fight.getReasonForLoss(),fight.getSecondReasonForLoss(),fight.getFightTime(), fight.getComment());
     }
-    // Additional methods for retrieving/updating results can be added here\n
-    public List<fightKeeperDB> getAllResults() {
+
+    public List<FightResult> getAllResults() {
             return repo.getAllResults();
         }
 }

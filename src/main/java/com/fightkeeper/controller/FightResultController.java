@@ -1,6 +1,6 @@
 package com.fightkeeper.controller;
 
-import com.fightkeeper.model.fightKeeperDB;
+import com.fightkeeper.model.FightResult;
 import com.fightkeeper.service.FightResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class FightResultController {
 
 
     @GetMapping
-    public ResponseEntity<List<fightKeeperDB>> getAllFightResults() {
+    public ResponseEntity<List<FightResult>> getAllFightResults() {
         // Logic to retrieve all fight results
         //something simple just for testing
          return ResponseEntity.ok(service.getAllResults());
@@ -31,7 +31,7 @@ public class FightResultController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createFightResult(@RequestBody fightKeeperDB fightResult) {
+    public ResponseEntity<String> createFightResult(@RequestBody FightResult fightResult) {
         // Logic to create a new fight result
         service.saveFightResult(fightResult);
         return ResponseEntity.ok("success");
