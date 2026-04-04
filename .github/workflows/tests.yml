@@ -16,4 +16,4 @@ jobs:
           distribution: 'temurin'
 
       - name: Run JUnit tests
-        run: ./gradlew test
+        run: gradle test
