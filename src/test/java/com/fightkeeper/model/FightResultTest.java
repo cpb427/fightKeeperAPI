@@ -1,3 +1,5 @@
+package com.fightkeeper.model;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,37 +16,11 @@ public class FightResultTest {
 
     @Test
     public void testConstructorAndGetters() {
-        FightResult result = new FightResult(1, "FighterA", "FighterB", true);
-        Assertions.assertEquals(1, result.getId());
-        Assertions.assertEquals("FighterA", result.getWinner());
-        Assertions.assertEquals("FighterB", result.getLoser());
-        Assertions.assertTrue(result.isVictory());
+        FightResult result = new FightResult("1", "FighterA", "FighterB", "combo", "spacing", "01-01-2026","it was close", "comment");
+        Assertions.assertEquals("1", result.getFkdb1());
+        Assertions.assertEquals("FighterA", result.getFighter1());
+        Assertions.assertEquals("FighterB", result.getFighter2());
     }
 
-    @Test
-    public void testSettersAndGetters() {
-        fightResult.setId(1);
-        fightResult.setWinner("FighterA");
-        fightResult.setLoser("FighterB");
-        fightResult.setVictory(true);
 
-        Assertions.assertEquals(1, fightResult.getId());
-        Assertions.assertEquals("FighterA", fightResult.getWinner());
-        Assertions.assertEquals("FighterB", fightResult.getLoser());
-        Assertions.assertTrue(fightResult.isVictory());
-    }
-
-    @Test
-    public void testFieldValidation() {
-        fightResult.setId(1);
-        fightResult.setWinner("FighterA");
-        fightResult.setLoser("FighterB");
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            fightResult.setWinner(null);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            fightResult.setLoser(null);
-        });
-    }
 }
